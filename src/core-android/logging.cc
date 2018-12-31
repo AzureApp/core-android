@@ -19,7 +19,7 @@ static int az_log_level_to_android(int level) {
     case AZ_LOG_INFO:
       return ANDROID_LOG_INFO;
     case AZ_LOG_WARN:
-      return ANDROID_LOG_DEBUG;
+      return ANDROID_LOG_WARN;
     case AZ_LOG_DEBUG:
       return ANDROID_LOG_DEBUG;
     case AZ_LOG_ERROR:
