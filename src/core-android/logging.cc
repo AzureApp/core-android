@@ -32,7 +32,7 @@ void WriteToLog(int level, const char *fmt, ...) {
   va_list args;
   va_start(args, fmt);
 
-  __android_log_print(az_log_level_to_android(level), "Azure", fmt, args);
+  __android_log_vprint(az_log_level_to_android(level), "Azure", fmt, args);
 
   if (!strstr(fmt, "\n")) {
     fmt = concat(fmt, "\n");
