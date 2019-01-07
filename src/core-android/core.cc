@@ -11,6 +11,7 @@
 #include "core.h"
 #include <libazure/logging.h>
 #include <thread>
+#include "message_handlers/handshake_handler.h"
 
 namespace azure {
 
@@ -33,6 +34,9 @@ void Core::SpawnNewClient(int descriptor) {
   // start client agent on new thread
   std::thread t([this, descriptor]() {
     auto agent = std::make_unique<ClientAgent>(descriptor);
+    // TODO: cleanup this code
+    agent->RegisterMessageHandler(ObjectType::Handshake,
+                                  std::make_unique<HandshakeHandler>(agent.get()));
     agent->Run();
     agents_.push_back(std::move(agent));
   });
