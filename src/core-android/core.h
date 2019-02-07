@@ -23,7 +23,7 @@ namespace azure {
 // It reimplements what the (now deprecated) Daemon class did
 class Core {
  public:
-  explicit Core(std::string address, int port);
+  explicit Core(const std::string& address, int port);
   ~Core();
 
   void Run();
