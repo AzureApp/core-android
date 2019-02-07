@@ -15,10 +15,17 @@
 namespace azure {
 
 int HandshakeHandler::HandleMessage(const MessageHandle& object_handle) {
-  HandshakeObject handshake = object_handle.as<HandshakeObject>();
+  try {
+    HandshakeObject handshake = object_handle.as<HandshakeObject>();
 
-  AZLogD("Received handshake from OS %d with ACP version %s",
-         (int)handshake.system, handshake.acp_version.c_str());
+    AZLogD("Received handshake from OS %d with ACP version %s",
+           (int)handshake.system, handshake.acp_version.c_str());
+
+    return MessageHandler::Success;
+  } catch (const msgpack::type_error& e) {
+    AZLogE("Could not parse handshake object");
+    return MessageHandler::InvalidObject;
+  }
 }
 
 }  // namespace azure
