@@ -28,8 +28,10 @@ class Core {
 
   void Run();
 
+  void AddNewAgent(std::unique_ptr<ClientAgent>& agent);
+
  private:
-  void SpawnNewClient(int descriptor);
+  void SpawnNewClient(std::shared_ptr<TCPConn> conn);
 
   TCPServer server_;
   std::vector<std::unique_ptr<ClientAgent>> agents_;
