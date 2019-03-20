@@ -20,6 +20,9 @@ class HandshakeHandler : public MessageHandler {
   HandshakeHandler(const ClientAgent* agent) : MessageHandler(agent) {}
 
   virtual int HandleMessage(const MessageHandle& object_handle) override;
+
+ private:
+  static HandshakeObject HandshakeForCurrentDevice();
 };
 
 }  // namespace azure

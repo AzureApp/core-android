@@ -9,10 +9,18 @@
  */
 
 #include "handshake_handler.h"
+#include <libazure/client_agent.h>
 #include <libazure/logging.h>
 #include "handshake_handler.h"
-
 namespace azure {
+
+HandshakeObject HandshakeHandler::HandshakeForCurrentDevice() {
+  HandshakeObject obj;
+  obj.acp_version = "1.0.0";  // TODO: don't hardcode this
+  obj.system = OperatingSystem::Android;
+
+  return obj;
+}
 
 int HandshakeHandler::HandleMessage(const MessageHandle& object_handle) {
   try {
@@ -21,7 +29,13 @@ int HandshakeHandler::HandleMessage(const MessageHandle& object_handle) {
     AZLogD("Received handshake from OS %d with ACP version %s",
            (int)handshake.system, handshake.acp_version.c_str());
 
-    return MessageHandler::Success;
+    HandshakeObject this_device = HandshakeForCurrentDevice();
+
+    if (client_agent()->SendObject(this_device)) {
+      return MessageHandler::Success;
+    } else {
+      return MessageHandler::SendFailure;
+    }
   } catch (const msgpack::type_error& e) {
     AZLogE("Could not parse handshake object");
     return MessageHandler::InvalidObject;
