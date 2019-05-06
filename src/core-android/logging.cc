@@ -10,6 +10,7 @@
 
 // android implementation of logging function(s)
 
+/*
 #include <android/log.h>
 #include <libazure/logging.h>
 namespace azure {
@@ -52,3 +53,4 @@ void WriteToLog(int level, const char *fmt, ...) {
 }
 
 }  // namespace azure
+*/

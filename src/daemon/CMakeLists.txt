@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
-add_subdirectory(${CMAKE_SOURCE_DIR}/third_party/gflags ${CMAKE_CURRENT_BINARY_DIR}/gflags)
+# add_subdirectory(${CMAKE_SOURCE_DIR}/third_party/gflags ${CMAKE_CURRENT_BINARY_DIR}/gflags)
 
 set(linenoise_SRC_FILES "${CMAKE_SOURCE_DIR}/third_party/linenoise/linenoise.c"
                         "${CMAKE_SOURCE_DIR}/third_party/linenoise/linenoise.h")

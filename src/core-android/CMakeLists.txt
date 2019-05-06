@@ -33,4 +33,4 @@ add_library(azure_core_android STATIC ${core_android_SRC_FILES} ${core_android_I
 target_include_directories(azure_core_android PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
         $<INSTALL_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
-target_link_libraries(azure_core_android log android azure_STATIC)
+target_link_libraries(azure_core_android log android libazure)
